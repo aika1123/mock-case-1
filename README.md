@@ -1,8 +1,13 @@
-# フリマ開発計画
+# coachtech フリマ
+
+## 概要
+
+- ある企業が開発した独自のフリマアプリ
 
 ## 環境構築
 
 ### Docker ビルド
+
 1. git@github.com:aika1123/mock-case-1.git
 2. DockerDesktop を立ち上げる
 3. docker-compose up -d --build
@@ -13,7 +18,8 @@
 2. composer install
 3. 「.env.example」ファイルを 「.env」ファイルに命名を変更。または、新しく.env ファイルを作成
 4. .env に以下を追加
-``` text
+
+```text
 DB_CONNECTION=mysql
 DB_HOST=mysql
 DB_PORT=3306
@@ -23,17 +29,20 @@ DB_PASSWORD=laravel_pass
 ```
 
 5. アプリケーションキーの作成
-``` bash
+
+```bash
 php artisan key:generate
 ```
 
 6. マイグレーションの実行
-``` bash
+
+```bash
 php artisan migrate
 ```
 
 7. シーディングの実行
-``` bash
+
+```bash
 php artisan db:seed
 ```
 
@@ -45,6 +54,7 @@ MySQL8.0.43
 
 ## ER 図
 
+![ER図](er-diagrm.png)
 
 ## URL
 
