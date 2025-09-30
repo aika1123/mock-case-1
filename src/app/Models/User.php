@@ -41,4 +41,40 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // 出品した商品（seller_id ）
+    public function items()
+    {
+        return $this->hasMany(Item::class, 'seller_id');
+    }
+
+    // いいね
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    // いいねした商品一覧
+    public function likedItems()
+    {
+        return $this->belongsToMany(Item::class, 'likes')->withTimestamps();
+    }
+
+    // コメント
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    // 購入履歴（buyer_id ）
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class, 'buyer_id');
+    }
+
+    // プロフィール
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 }
