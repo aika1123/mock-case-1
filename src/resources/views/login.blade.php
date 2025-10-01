@@ -10,7 +10,8 @@
     <div class="login-heading">
         <h2>ログイン</h2>
     </div>
-    <form class="login-form">
+    <form class="login-form" action="/login" method="post">
+    @csrf
     <div class="login-form__group">
         <div class="login-form__group-title">
             <span class="login-form__label--item">
@@ -20,7 +21,7 @@
     </div>
     <div class="login-form__group-content">
         <div class="login-form__input--text">
-            <input type="text" name="email">
+            <input type="text" name="email"  value="{{ old('email') }}">
         </div>
     </div>
     <div class="login-form__group">
@@ -41,7 +42,7 @@
         </button>
     </div>
     <div class="login-form__login">
-        <a class="login-form__login--item" >
+        <a class="login-form__login--item" href="/register">
             会員登録はこちら
         </a>
     </div>

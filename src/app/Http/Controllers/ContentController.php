@@ -6,13 +6,4 @@ use Illuminate\Http\Request;
 
 class ContentController extends Controller
 {
-    public function show()
-    {
-        return view('register');
-    }
-
-    public function login()
-    {
-        return view('login');
-    }
 }

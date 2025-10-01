@@ -10,7 +10,8 @@
     <div class="register-heading">
         <h2>会員登録</h2>
     </div>
-    <form class="register-form">
+    <form class="register-form" action="/register" method="post">
+    @csrf
     <div class="register-form__group">
         <div class="register-form__group-title">
             <span class="register-form__label--item">
@@ -20,7 +21,7 @@
     </div>
     <div class="register-form__group-content">
         <div class="register-form__input--text">
-            <input type="text" name="name">
+            <input type="text" name="name" value="{{old('name') }}">
         </div>
     </div>
     <div class="register-form__group">
@@ -32,7 +33,7 @@
     </div>
     <div class="register-form__group-content">
         <div class="register-form__input--text">
-            <input type="text" name="email">
+            <input type="text" name="email" value="{{ old('email') }}">
         </div>
     </div>
     <div class="register-form__group">
@@ -65,7 +66,7 @@
         </button>
     </div>
     <div class="register-form__login">
-        <a class="register-form__login--item" >
+        <a class="register-form__login--item"  href="{{ route('login')}}">
             ログインはこちら
         </a>
     </div>
