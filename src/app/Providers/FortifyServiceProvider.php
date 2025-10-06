@@ -6,6 +6,7 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -37,6 +38,31 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::loginView(function () {
             return view('login');
         });
+
+        Fortify::authenticateUsing(function (Request $request) {
+            app(LoginRequest::class)
+
+                ->setContainer(app())
+
+                ->setRedirector(app('redirect'))
+
+                ->validateResolved();
+
+            $user = User::where('email', $request->input('email'))->first();
+
+            if ($user && Hash::check($request->input('password'), $user->password)) {
+
+                return $user;
+
+            }
+
+            throw ValidationException::withMessages([
+                'email' => 'ログイン情報が登録されていません。',
+            ]);
+        });
+
+
+        $this->app->bind(FortifyLoginRequest::class, AppLoginRequest::class);
 
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;

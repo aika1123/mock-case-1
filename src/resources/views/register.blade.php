@@ -23,6 +23,9 @@
         <div class="register-form__input--text">
             <input type="text" name="name" value="{{old('name') }}">
         </div>
+        @error('name')
+            {{ $message }}
+        @enderror
     </div>
     <div class="register-form__group">
         <div class="register-form__group-title">
@@ -35,6 +38,9 @@
         <div class="register-form__input--text">
             <input type="text" name="email" value="{{ old('email') }}">
         </div>
+        @error('email')
+            {{ $message }}
+        @enderror
     </div>
     <div class="register-form__group">
         <div class="register-form__group-title">
@@ -47,6 +53,9 @@
         <div class="register-form__input--text">
             <input type="text" name="password">
         </div>
+        @error('password')
+            {{ $message }}
+        @enderror
     </div>
     <div class="register-form__group">
         <div class="register-form__group-title">
@@ -57,8 +66,11 @@
     </div>
     <div class="register-form__group-content">
         <div class="register-form__input--text">
-            <input type="text" name="confirmation-password">
+            <input type="text" name="password_confirmation">
         </div>
+        @error('password_confirmation')
+            {{ $message }}
+        @enderror
     </div>
     <div class="register-form__button">
         <button class="register-form__button-submit" type="submit">
